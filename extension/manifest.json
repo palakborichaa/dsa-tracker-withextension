@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+
+  "name": "DSA Tracker Sync",
+
+  "version": "1.0",
+
+  "permissions": [
+  "storage"
+],
+
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://dsa-tracker-b8zw.onrender.com/*"
+  ],
+
+  "description": "Automatically sync solved DSA problems",
+
+  
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://localhost/*",
+        "http://127.0.0.1/*",
+        "https://localhost/*",
+        "https://dsa-tracker-murex.vercel.app/*",
+        "https://dsa-tracker-git-main-palaks-projects-09ea9c07.vercel.app/*"
+      ],
+
+      "js": [
+        "auth-bridge.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://leetcode.com/problems/*",
+        "https://practice.geeksforgeeks.org/problems/*",
+        "https://www.geeksforgeeks.org/problems/*"
+      ],
+
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}

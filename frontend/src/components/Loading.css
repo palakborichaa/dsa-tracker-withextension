@@ -1,0 +1,126 @@
+.loading-container {
+  min-height: min(72vh, 720px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem) 1rem;
+  background: #0b0b0b;
+}
+
+.loading-card {
+  width: min(100%, 560px);
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  animation: loading-fade-in 420ms ease both;
+}
+
+.loading-ring {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(255, 255, 255, 0.92);
+  border-right-color: rgba(255, 255, 255, 0.5);
+  animation: loading-spin 900ms linear infinite;
+}
+
+.loading-copy {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.loading-kicker {
+  min-height: 1.2em;
+  margin: 0;
+  color: #9a9a9a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.loading-dots::after {
+  content: '.';
+  animation: loading-dots 1.2s steps(3, end) infinite;
+}
+
+.loading-copy h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.85rem, 4vw, 2.7rem);
+  line-height: 1.08;
+  font-weight: 800;
+}
+
+.loading-subtitle {
+  max-width: 420px;
+  margin: 0;
+  color: #bdbdbd;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.7;
+}
+
+.loading-quote {
+  margin: 8px 0 0;
+  color: #8b8b8b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loading-dots {
+  0% {
+    content: '.';
+  }
+
+  33% {
+    content: '..';
+  }
+
+  66%,
+  100% {
+    content: '...';
+  }
+}
+
+@media (max-width: 560px) {
+  .loading-container {
+    min-height: 68vh;
+    padding-inline: 0;
+  }
+
+  .loading-card {
+    border-radius: 24px;
+  }
+
+  .loading-ring {
+    width: 70px;
+    height: 70px;
+  }
+}
