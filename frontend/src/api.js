@@ -1,9 +1,10 @@
 // src/api.js
 import axios from 'axios';
+import { API_PATH } from './config';
 
 // Create Axios instance pointing to deployed backend
 const API = axios.create({
-  baseURL: (process.env.REACT_APP_API_URL || 'https://dsa-tracker-b8zw.onrender.com') + '/api', // Backend URL with fallback
+  baseURL: API_PATH,
 });
 
 // Add JWT token to headers if it exists

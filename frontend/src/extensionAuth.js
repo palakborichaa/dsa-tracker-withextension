@@ -1,6 +1,7 @@
+import { API_BASE_URL } from './config';
+
 const EXTENSION_AUTH_MESSAGE = 'DSA_TRACKER_EXTENSION_AUTH';
 const EXTENSION_AUTH_REQUEST = 'DSA_TRACKER_EXTENSION_AUTH_REQUEST';
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://dsa-tracker-b8zw.onrender.com';
 
 export const publishExtensionAuth = (token) => {
   if (typeof window === 'undefined' || !token) return;
