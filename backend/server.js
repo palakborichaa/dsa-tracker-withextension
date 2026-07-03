@@ -17,17 +17,17 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-
-    callback(new Error("Not allowed by CORS"));
-  },
+  origin: [
+    "http://localhost:3000",
+    "https://dsa-tracker-withextension.vercel.app",
+    "https://leetcode.com",
+    "https://www.geeksforgeeks.org",
+    "https://practice.geeksforgeeks.org"
+  ],
   credentials: true
 }));
+
+app.options("*", cors());
 
 app.use(express.json());
 app.use(express.json()); // Body parser for JSON requests
