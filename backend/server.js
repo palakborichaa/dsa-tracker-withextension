@@ -11,8 +11,21 @@ const app = express();
 const PORT = process.env.PORT || 5050; // Use port from .env or default to 5050
 
 // Middleware
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://dsa-tracker-withextension.vercel.app"
+];
+
 app.use(cors({
-  origin: true,
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    callback(new Error("Not allowed by CORS"));
+  },
   credentials: true
 }));
 
