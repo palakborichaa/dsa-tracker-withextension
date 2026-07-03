@@ -1,16 +1,11 @@
 console.log("DSA Tracker Extension Connected");
+let dsaTrackerToken = null;
 
-chrome.storage.local.get(
-  ["dsaTrackerToken"],
-  ({ dsaTrackerToken }) => {
-
-      fetch(...,{
-          headers:{
-             Authorization:`Bearer ${dsaTrackerToken}`
-          }
-      })
-
+chrome.storage.local.get(["dsaTrackerToken"], (result) => {
+    dsaTrackerToken = result.dsaTrackerToken;
+    console.log("Extension token loaded:", dsaTrackerToken);
 });
+
 const observer = new MutationObserver(() => {
 
   let isAccepted = false;
@@ -93,27 +88,25 @@ const observer = new MutationObserver(() => {
 // -----------------------------
 function syncProblem(problemData) {
 
-  console.log("Problem Data:", problemData);
+    chrome.storage.local.get(["dsaTrackerToken"], ({ dsaTrackerToken }) => {
 
-  fetch("http://localhost:5050/api/dsa/add", {
+        if (!dsaTrackerToken) {
+            console.warn("User is not logged in.");
+            return;
+        }
 
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${dsaTrackerToken}`
-    },
-
-    body: JSON.stringify(problemData)
-
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log("Problem synced:", data);
-  })
-  .catch(err => {
-    console.error("Sync error:", err);
-  });
+        fetch("https://dsa-tracker-backend-57l2.onrender.com/api/dsa/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${dsaTrackerToken}`
+            },
+            body: JSON.stringify(problemData)
+        })
+        .then(res => res.json())
+        .then(data => console.log("Problem synced:", data))
+        .catch(err => console.error("Sync error:", err));
+    });
 
 }
 // -----------------------------

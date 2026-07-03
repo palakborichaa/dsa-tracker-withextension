@@ -10,10 +10,10 @@
 ],
 
   "host_permissions": [
-    "http://localhost/*",
-    "http://127.0.0.1/*",
-    "https://dsa-tracker-b8zw.onrender.com/*"
-  ],
+  "https://dsa-tracker-backend-57l2.onrender.com/*",
+  "http://localhost/*",
+  "http://127.0.0.1/*"
+],
 
   "description": "Automatically sync solved DSA problems",
 
@@ -22,12 +22,13 @@
   "content_scripts": [
     {
       "matches": [
-        "http://localhost/*",
-        "http://127.0.0.1/*",
-        "https://localhost/*",
-        "https://dsa-tracker-murex.vercel.app/*",
-        "https://dsa-tracker-git-main-palaks-projects-09ea9c07.vercel.app/*"
-      ],
+  "http://localhost/*",
+  "http://127.0.0.1/*",
+  "https://localhost/*",
+  "https://dsa-tracker-withextension.vercel.app/*",
+  "https://dsa-tracker-murex.vercel.app/*",
+  "https://dsa-tracker-git-main-palaks-projects-09ea9c07.vercel.app/*"
+],
 
       "js": [
         "auth-bridge.js"

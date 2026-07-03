@@ -5,6 +5,7 @@ const AUTH_REQUEST_TYPE = "DSA_TRACKER_EXTENSION_AUTH_REQUEST";
 const ALLOWED_ORIGINS = new Set([
   "http://localhost:3000",
   "http://127.0.0.1:3000",
+  "https://dsa-tracker-withextension.vercel.app",
   "https://dsa-tracker-murex.vercel.app",
   "https://dsa-tracker-git-main-palaks-projects-09ea9c07.vercel.app",
 ]);
@@ -34,7 +35,7 @@ window.addEventListener("message", (event) => {
   chrome.storage.local.set(
     {
       dsaTrackerToken: token,
-      dsaTrackerApiBaseUrl: apiBaseUrl || "http://localhost:5050",
+      dsaTrackerApiBaseUrl: apiBaseUrl || "https://dsa-tracker-backend-57l2.onrender.com",
     },
     () => {
       console.log("DSA Tracker extension auth updated");
